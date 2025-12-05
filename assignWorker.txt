@@ -1,0 +1,18 @@
+Function 2: assignWorker()
+What it does: Employer assigns a worker to an OPEN gig (if worker wasn't assigned at
+creation).
+Inputs:
+• uint256 _gigId
+• address _worker
+Logic:
+1. Verify gig exists and status is OPEN
+2. Verify caller is the employer
+3. Verify worker address is not zero
+4. Update gig.worker = _worker
+5. Update gig.status = ASSIGNED
+6. Emit WorkerAssigned(gigId, worker) event
+Key checks:• Only employer can call this
+• Gig must be in OPEN status
+• Worker cannot already be assigned
+Why this matters: Allows ﬂexible workﬂow where employers can post ﬁrst, then choose
+worker after applications.
