@@ -1,0 +1,29 @@
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+.wallet.json
+.DS_Store
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Hardhat artifacts
+artifacts/
+cache/
+.hardhat
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+Thumbs.db

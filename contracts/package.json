@@ -4,14 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "hardhat test --network hardhat",
+    "test:verbose": "hardhat test --network hardhat --show-logs",
+    "generate-wallet": "node scripts/generate-wallet.js",
+    "compile": "hardhat compile",
+    "deploy:fuji": "hardhat run scripts/deploy.js --network fuji",
+    "deploy:local": "hardhat run scripts/deploy.js --network hardhat"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
-    "hardhat": "^2.27.1"
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "chai": "^4.3.7",
+    "ethers": "^6.7.0",
+    "hardhat": "^2.22.0",
+    "dotenv": "^16.3.1"
   }
 }

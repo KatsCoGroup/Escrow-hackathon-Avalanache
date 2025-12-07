@@ -24,6 +24,8 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 // x402 (Optional - Post-MVP)
 const X402_FACILITATOR_URL = process.env.X402_FACILITATOR_URL;
 const X402_PAYMENT_ADDRESS = process.env.X402_PAYMENT_ADDRESS;
+const X402_API_KEY = process.env.X402_API_KEY;
+const USDC_TOKEN_ADDRESS = process.env.USDC_TOKEN_ADDRESS;
 
 module.exports = {
   PORT,
@@ -40,4 +42,6 @@ module.exports = {
   SUPABASE_ANON_KEY,
   X402_FACILITATOR_URL,
   X402_PAYMENT_ADDRESS,
+  X402_API_KEY,
+  USDC_TOKEN_ADDRESS,
 };
