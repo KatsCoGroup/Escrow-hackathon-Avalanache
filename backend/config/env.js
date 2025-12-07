@@ -18,6 +18,8 @@ const ADMIN_ADDRESS = process.env.ADMIN_ADDRESS;
 // Database
 const MONGODB_URI = process.env.MONGODB_URI;
 const DATABASE_URL = process.env.DATABASE_URL; // Optional, for PostgreSQL
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
 // x402 (Optional - Post-MVP)
 const X402_FACILITATOR_URL = process.env.X402_FACILITATOR_URL;
@@ -34,6 +36,8 @@ module.exports = {
   ADMIN_ADDRESS,
   MONGODB_URI,
   DATABASE_URL,
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY,
   X402_FACILITATOR_URL,
   X402_PAYMENT_ADDRESS,
 };

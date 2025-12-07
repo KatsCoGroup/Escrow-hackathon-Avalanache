@@ -1,8 +1,6 @@
 const express = require("express");
-const connectDB = require("./config/db");
+const { connectDB, supabase } = require("./config/db");
 const morgan = require("morgan");
-
-connectDB();
 
 const app = express();
 
@@ -11,7 +9,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Routes
-const gigRouter = require("./routes/gig"); 
+const gigRouter = require("./routes/gig");
 app.use("/api/gigs", gigRouter);
 
 const PORT = process.env.PORT || 3000;
