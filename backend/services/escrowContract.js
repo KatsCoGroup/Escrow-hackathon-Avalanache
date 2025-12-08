@@ -5,11 +5,9 @@
  */
 
 const { ethers } = require("ethers");
+const { AVALANCHE_RPC_URL, ESCROW_CONTRACT_ADDRESS, ADMIN_PRIVATE_KEY } = require("../config/env");
 
-// Load environment variables
-const AVALANCHE_RPC_URL = process.env.AVALANCHE_RPC_URL;
-const ESCROW_CONTRACT_ADDRESS = process.env.ESCROW_CONTRACT_ADDRESS;
-const ADMIN_PRIVATE_KEY = process.env.ADMIN_PRIVATE_KEY;
+// Load environment variables from config
 
 // Escrow contract ABI (minimal - only the functions we need)
 const ESCROW_ABI = [
@@ -40,7 +38,10 @@ function initializeContract() {
   }
 
   try {
-    provider = new ethers.JsonRpcProvider(AVALANCHE_RPC_URL);
+    // Use a more permissive provider configuration for public RPC endpoints
+    provider = new ethers.JsonRpcProvider(AVALANCHE_RPC_URL, undefined, {
+      staticNetwork: true, // Skip network detection for better compatibility
+    });
     
     if (ADMIN_PRIVATE_KEY) {
       signer = new ethers.Wallet(ADMIN_PRIVATE_KEY, provider);
