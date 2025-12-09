@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: projectx-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: projectx_user
+      MONGO_INITDB_ROOT_PASSWORD: projectx_password
+      MONGO_INITDB_DATABASE: projectx
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - projectx-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test -u projectx_user -p projectx_password --authenticationDatabase admin
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: projectx-backend
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URI: mongodb://projectx_user:projectx_password@mongodb:27017/projectx?authSource=admin
+      NODE_ENV: development
+      ADMIN_SECRET_KEY: dev-secret-key
+      PORT: 3000
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - projectx-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm start
+
+volumes:
+  mongodb_data:
+
+networks:
+  projectx-network:
+    driver: bridge
