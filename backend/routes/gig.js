@@ -89,7 +89,7 @@ router.get("/:gigId", async (req, res) => {
  */
 router.post("/", async (req, res) => {
   try {
-    const { employer, title, description, paymentAmount, requiredBadge, deadline } =
+    const { employer, title, description, paymentAmount, requiredBadge, deadline, blockchainGigId, txHash } =
       req.body;
 
     // Validate input
@@ -122,52 +122,49 @@ router.post("/", async (req, res) => {
       });
     }
 
-    // Create gig in database first
+    // If frontend already created on-chain, accept provided ids; otherwise create on-chain here
+    let onChain = null;
+    if (blockchainGigId && txHash) {
+      onChain = { gigId: Number(blockchainGigId), txHash };
+    } else {
+      try {
+        onChain = await createGigOnChain(
+          employer.toLowerCase(),
+          null, // Open gig (no worker yet)
+          paymentAmount
+        );
+      } catch (blockchainError) {
+        console.error("❌ Blockchain gig creation failed:", blockchainError.message || blockchainError);
+        return res.status(400).json({
+          success: false,
+          message: "Failed to create gig on-chain",
+          error: blockchainError.message || "Unknown blockchain error",
+        });
+      }
+    }
+
+    // Persist only after chain succeeds
     const gig = new Gig({
       employer: employer.toLowerCase(),
       title,
       description,
+      imageUrl: req.body.imageUrl || "",
       paymentAmount: paymentAmount.toString(),
       requiredBadge: requiredBadge || "",
       deadline: deadline || 7,
       status: "OPEN",
+      blockchainGigId: onChain?.gigId,
+      txHash: onChain?.txHash,
     });
 
     await gig.save();
 
-    // Try to create on blockchain (optional - will update via event listener)
-    try {
-      const result = await createGigOnChain(
-        employer.toLowerCase(),
-        null, // Open gig (no worker yet)
-        paymentAmount
-      );
-      
-      gig.blockchainGigId = result.gigId;
-      await gig.save();
-
-      res.status(201).json({
-        success: true,
-        message: "Gig created successfully on blockchain",
-        gig: gig,
-        blockchain: {
-          gigId: result.gigId,
-          txHash: result.txHash,
-          blockNumber: result.blockNumber,
-        },
-      });
-    } catch (blockchainError) {
-      console.warn("⚠️  Blockchain creation failed, gig created in database only:", blockchainError.message);
-      
-      res.status(201).json({
-        success: true,
-        message: "Gig created in database. Lock payment on blockchain separately.",
-        gig: gig,
-        blockchain: {
-          error: blockchainError.message,
-        },
-      });
-    }
+    return res.status(201).json({
+      success: true,
+      message: "Gig created successfully on-chain",
+      gig,
+      blockchain: onChain,
+    });
   } catch (error) {
     console.error("Error creating gig:", error);
     res.status(500).json({
@@ -175,6 +172,56 @@ router.post("/", async (req, res) => {
       message: "Error creating gig",
       error: error.message,
     });
+  }
+});
+
+/**
+ * Update gig details (title/description/payment/badge/deadline/image)
+ * PUT /api/gigs/:gigId
+ * Requires employer wallet match with stored gig.employer
+ */
+router.put("/:gigId", async (req, res) => {
+  try {
+    const { gigId } = req.params;
+    const { employer, title, description, paymentAmount, requiredBadge, deadline, imageUrl } = req.body;
+
+    if (!employer || !/^0x[a-fA-F0-9]{40}$/.test(employer)) {
+      return res.status(400).json({ success: false, message: "Invalid employer wallet address" });
+    }
+
+    let gig = await Gig.findById(gigId);
+    if (!gig) {
+      // Fallback: allow lookup by blockchainGigId
+      const numericId = Number(gigId);
+      if (!Number.isNaN(numericId)) {
+        gig = await Gig.findOne({ blockchainGigId: numericId });
+      }
+    }
+    if (!gig) {
+      return res.status(404).json({ success: false, message: "Gig not found" });
+    }
+
+    if (gig.employer !== employer.toLowerCase()) {
+      return res.status(403).json({ success: false, message: "Only the employer can edit this gig" });
+    }
+
+    if (gig.status === "COMPLETED" || gig.status === "CANCELLED") {
+      return res.status(400).json({ success: false, message: "Cannot edit a completed or cancelled gig" });
+    }
+
+    if (title !== undefined) gig.title = title;
+    if (description !== undefined) gig.description = description;
+    if (paymentAmount !== undefined) gig.paymentAmount = paymentAmount.toString();
+    if (requiredBadge !== undefined) gig.requiredBadge = requiredBadge;
+    if (deadline !== undefined) gig.deadline = deadline;
+    if (imageUrl !== undefined) gig.imageUrl = imageUrl;
+
+    await gig.save();
+
+    return res.json({ success: true, gig });
+  } catch (error) {
+    console.error("Error updating gig:", error);
+    res.status(500).json({ success: false, message: "Error updating gig", error: error.message });
   }
 });
 

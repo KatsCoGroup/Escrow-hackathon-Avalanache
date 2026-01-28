@@ -26,6 +26,10 @@ const gigSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    default: "",
+  },
   paymentAmount: {
     type: String,
     required: true,

@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "a07f1f77bcf86cd799439060",
+    "tokenId": 101,
+    "owner": "0x1234567890123456789012345678901234567890",
+    "mintedAt": "2024-03-05T12:00:00Z",
+    "status": "active",
+    "purchasePrice": 49.0,
+    "txHash": "0xnft1234tx5678hash9012xyz3456abcd",
+    "isPromo": false
+  },
+  {
+    "_id": "a07f1f77bcf86cd799439061",
+    "tokenId": 102,
+    "owner": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    "mintedAt": "2024-04-10T15:20:00Z",
+    "status": "active",
+    "purchasePrice": 49.0,
+    "txHash": "0xnft5678tx9012hash3456xyz7890abcd",
+    "isPromo": false
+  },
+  {
+    "_id": "a07f1f77bcf86cd799439062",
+    "tokenId": 103,
+    "owner": "0x1111111111111111111111111111111111111111",
+    "mintedAt": "2024-05-15T11:30:00Z",
+    "status": "active",
+    "purchasePrice": 49.0,
+    "txHash": "0xnft9012tx3456hash7890xyz1234abcd",
+    "isPromo": false
+  },
+  {
+    "_id": "a07f1f77bcf86cd799439063",
+    "tokenId": 104,
+    "owner": "0xaa11bb22cc33dd44ee55ff66aa77bb88cc99dd00",
+    "mintedAt": "2024-06-01T09:45:00Z",
+    "status": "active",
+    "purchasePrice": 0.0,
+    "txHash": "0xnft3456tx7890hash1234xyz5678abcd",
+    "isPromo": true
+  },
+  {
+    "_id": "a07f1f77bcf86cd799439064",
+    "tokenId": 105,
+    "owner": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+    "mintedAt": "2024-07-20T14:15:00Z",
+    "status": "active",
+    "purchasePrice": 49.0,
+    "txHash": "0xnft7890tx1234hash5678xyz9012abcd",
+    "isPromo": false
+  },
+  {
+    "_id": "a07f1f77bcf86cd799439065",
+    "tokenId": 106,
+    "owner": "0x2222222222222222222222222222222222222222",
+    "mintedAt": "2024-08-10T17:00:00Z",
+    "status": "revoked",
+    "purchasePrice": 49.0,
+    "txHash": "0xnfta456txb789hashc012xyzd345abcd",
+    "isPromo": false
+  }
+]

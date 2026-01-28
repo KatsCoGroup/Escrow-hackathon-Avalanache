@@ -1,0 +1,168 @@
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "address": "0x1234567890123456789012345678901234567890",
+    "displayName": "Alice Smith",
+    "bio": "Full-stack developer with 5+ years of experience",
+    "profileImage": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice",
+    "badges": [
+      {
+        "tokenId": 1,
+        "skillName": "JavaScript",
+        "iconURI": "ipfs://QmTe1234567890",
+        "level": "EXPERT",
+        "issuedAt": "2024-01-15T10:30:00Z"
+      },
+      {
+        "tokenId": 2,
+        "skillName": "React",
+        "iconURI": "ipfs://QmTe9876543210",
+        "level": "EXPERT",
+        "issuedAt": "2024-02-20T14:45:00Z"
+      }
+    ],
+    "completedGigs": 12,
+    "rating": 4.8,
+    "joinedAt": "2023-06-10T08:00:00Z",
+    "subscription": {
+      "type": "monthly",
+      "expiresAt": "2025-01-15T08:00:00Z",
+      "autoRenew": true
+    },
+    "communityNFT": {
+      "owns": true,
+      "tokenId": 101,
+      "mintedAt": "2024-03-05T12:00:00Z"
+    }
+  },
+  {
+    "_id": "507f1f77bcf86cd799439012",
+    "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    "displayName": "Bob Johnson",
+    "bio": "Solidity smart contract developer",
+    "profileImage": "https://api.dicebear.com/7.x/avataaars/svg?seed=bob",
+    "badges": [
+      {
+        "tokenId": 3,
+        "skillName": "Solidity",
+        "iconURI": "ipfs://QmSolidity123",
+        "level": "ADVANCED",
+        "issuedAt": "2024-01-10T09:15:00Z"
+      }
+    ],
+    "completedGigs": 8,
+    "rating": 4.6,
+    "joinedAt": "2023-07-20T10:30:00Z",
+    "subscription": {
+      "type": "community_nft",
+      "expiresAt": "2025-12-31T23:59:59Z",
+      "autoRenew": false
+    },
+    "communityNFT": {
+      "owns": true,
+      "tokenId": 102,
+      "mintedAt": "2024-04-10T15:20:00Z"
+    }
+  },
+  {
+    "_id": "507f1f77bcf86cd799439013",
+    "address": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+    "displayName": "Carol White",
+    "bio": "Product designer and UI/UX specialist",
+    "profileImage": "https://api.dicebear.com/7.x/avataaars/svg?seed=carol",
+    "badges": [
+      {
+        "tokenId": 4,
+        "skillName": "UI/UX Design",
+        "iconURI": "ipfs://QmDesign456",
+        "level": "EXPERT",
+        "issuedAt": "2023-12-01T11:00:00Z"
+      },
+      {
+        "tokenId": 5,
+        "skillName": "Figma",
+        "iconURI": "ipfs://QmFigma789",
+        "level": "INTERMEDIATE",
+        "issuedAt": "2024-02-14T16:30:00Z"
+      }
+    ],
+    "completedGigs": 15,
+    "rating": 4.9,
+    "joinedAt": "2023-05-15T07:45:00Z",
+    "subscription": {
+      "type": "monthly",
+      "expiresAt": "2025-02-28T08:00:00Z",
+      "autoRenew": true
+    },
+    "communityNFT": {
+      "owns": false,
+      "tokenId": null,
+      "mintedAt": null
+    }
+  },
+  {
+    "_id": "507f1f77bcf86cd799439014",
+    "address": "0xaa11bb22cc33dd44ee55ff66aa77bb88cc99dd00",
+    "displayName": "David Chen",
+    "bio": "Data scientist and machine learning engineer",
+    "profileImage": "https://api.dicebear.com/7.x/avataaars/svg?seed=david",
+    "badges": [
+      {
+        "tokenId": 6,
+        "skillName": "Python",
+        "iconURI": "ipfs://QmPython101",
+        "level": "EXPERT",
+        "issuedAt": "2023-11-20T13:25:00Z"
+      }
+    ],
+    "completedGigs": 5,
+    "rating": 4.5,
+    "joinedAt": "2024-01-08T09:00:00Z",
+    "subscription": {
+      "type": "none",
+      "expiresAt": null,
+      "autoRenew": false
+    },
+    "communityNFT": {
+      "owns": false,
+      "tokenId": null,
+      "mintedAt": null
+    }
+  },
+  {
+    "_id": "507f1f77bcf86cd799439015",
+    "address": "0x1111111111111111111111111111111111111111",
+    "displayName": "Emma Davis",
+    "bio": "DevOps and cloud infrastructure specialist",
+    "profileImage": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma",
+    "badges": [
+      {
+        "tokenId": 7,
+        "skillName": "AWS",
+        "iconURI": "ipfs://QmAWS202",
+        "level": "EXPERT",
+        "issuedAt": "2023-09-10T10:45:00Z"
+      },
+      {
+        "tokenId": 8,
+        "skillName": "Kubernetes",
+        "iconURI": "ipfs://QmKubernetes303",
+        "level": "INTERMEDIATE",
+        "issuedAt": "2024-03-22T14:15:00Z"
+      }
+    ],
+    "completedGigs": 20,
+    "rating": 4.7,
+    "joinedAt": "2023-04-01T06:30:00Z",
+    "subscription": {
+      "type": "monthly",
+      "expiresAt": "2025-01-20T08:00:00Z",
+      "autoRenew": true
+    },
+    "communityNFT": {
+      "owns": true,
+      "tokenId": 103,
+      "mintedAt": "2024-05-15T11:30:00Z"
+    }
+  }
+]
