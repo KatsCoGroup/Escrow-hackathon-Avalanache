@@ -8,6 +8,16 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     match: /^0x[a-fA-F0-9]{40}$/,
   },
+  username: {
+    type: String,
+    unique: true,
+    sparse: true,
+    lowercase: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 30,
+    match: /^[a-z0-9._-]+$/,
+  },
   displayName: {
     type: String,
     default: "",
@@ -20,6 +30,43 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  skills: {
+    type: [String],
+    default: [],
+  },
+  skillRequests: [
+    {
+      name: { type: String, required: true },
+      status: {
+        type: String,
+        enum: ["pending", "approved", "rejected"],
+        default: "pending",
+      },
+      source: {
+        type: String,
+        enum: ["self", "admin"],
+        default: "self",
+      },
+      requestedAt: { type: Date, default: Date.now },
+      reviewedAt: { type: Date },
+      reviewerNote: { type: String, default: "" },
+    },
+  ],
+  projects: [
+    {
+      title: { type: String, required: true },
+      stack: { type: String, default: "" },
+      skills: { type: [String], default: [] },
+      status: {
+        type: String,
+        enum: ["pending", "approved", "rejected"],
+        default: "pending",
+      },
+      reviewerNote: { type: String, default: "" },
+      createdAt: { type: Date, default: Date.now },
+      updatedAt: { type: Date, default: Date.now },
+    },
+  ],
   badges: [
     {
       tokenId: Number,
@@ -41,6 +88,11 @@ const userSchema = new mongoose.Schema({
     default: 0,
     min: 0,
     max: 5,
+  },
+  ratingCount: {
+    type: Number,
+    default: 0,
+    min: 0,
   },
   joinedAt: {
     type: Date,

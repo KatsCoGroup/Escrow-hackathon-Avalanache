@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "707f1f77bcf86cd799439030",
+    "userAddress": "0x1234567890123456789012345678901234567890",
+    "type": "monthly",
+    "price": 9.99,
+    "status": "active",
+    "startDate": "2024-12-15T08:00:00Z",
+    "expiresAt": "2025-01-15T08:00:00Z",
+    "autoRenew": true,
+    "txHash": "0xsub1234tx5678hash9012xyz3456abcd",
+    "renewalDate": "2025-01-15T08:00:00Z"
+  },
+  {
+    "_id": "707f1f77bcf86cd799439031",
+    "userAddress": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    "type": "community_nft",
+    "price": 49.0,
+    "status": "active",
+    "startDate": "2024-04-10T12:00:00Z",
+    "expiresAt": "2025-12-31T23:59:59Z",
+    "autoRenew": false,
+    "txHash": "0xsub5678tx9012hash3456xyz7890abcd",
+    "renewalDate": null
+  },
+  {
+    "_id": "707f1f77bcf86cd799439032",
+    "userAddress": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+    "type": "monthly",
+    "price": 9.99,
+    "status": "active",
+    "startDate": "2024-11-28T10:30:00Z",
+    "expiresAt": "2025-02-28T10:30:00Z",
+    "autoRenew": true,
+    "txHash": "0xsub9012tx3456hash7890xyz1234abcd",
+    "renewalDate": "2025-02-28T10:30:00Z"
+  },
+  {
+    "_id": "707f1f77bcf86cd799439033",
+    "userAddress": "0xaa11bb22cc33dd44ee55ff66aa77bb88cc99dd00",
+    "type": "monthly",
+    "price": 9.99,
+    "status": "expired",
+    "startDate": "2024-10-01T14:00:00Z",
+    "expiresAt": "2024-11-01T14:00:00Z",
+    "autoRenew": false,
+    "txHash": "0xsub3456tx7890hash1234xyz5678abcd",
+    "renewalDate": null
+  },
+  {
+    "_id": "707f1f77bcf86cd799439034",
+    "userAddress": "0x1111111111111111111111111111111111111111",
+    "type": "community_nft",
+    "price": 49.0,
+    "status": "active",
+    "startDate": "2024-05-15T16:45:00Z",
+    "expiresAt": "2025-05-15T16:45:00Z",
+    "autoRenew": true,
+    "txHash": "0xsub7890tx1234hash5678xyz9012abcd",
+    "renewalDate": "2025-05-15T16:45:00Z"
+  }
+]

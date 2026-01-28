@@ -1,0 +1,131 @@
+[
+  {
+    "_id": "607f1f77bcf86cd799439020",
+    "blockchainGigId": 1,
+    "employer": "0x1234567890123456789012345678901234567890",
+    "worker": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    "title": "Build React Component Library",
+    "description": "Create a reusable component library with Storybook documentation and TypeScript support",
+    "paymentAmount": "2500.00",
+    "requiredBadge": "React",
+    "deadline": 1704067200,
+    "status": "COMPLETED",
+    "featured": true,
+    "featuredUntil": "2024-12-20T23:59:59Z",
+    "urgent": false,
+    "txHash": "0xabcd1234efgh5678ijkl9012mnop3456qrst7890",
+    "createdAt": "2024-01-10T10:00:00Z",
+    "completedAt": "2024-01-28T15:30:00Z",
+    "applications": [
+      {
+        "workerId": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+        "coverLetter": "I have 5+ years of React experience and have built similar libraries",
+        "estimatedTime": 14,
+        "appliedAt": "2024-01-10T12:00:00Z"
+      },
+      {
+        "workerId": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+        "coverLetter": "Great project! I love working with component systems",
+        "estimatedTime": 18,
+        "appliedAt": "2024-01-10T13:15:00Z"
+      }
+    ]
+  },
+  {
+    "_id": "607f1f77bcf86cd799439021",
+    "blockchainGigId": 2,
+    "employer": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    "worker": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+    "title": "Design Mobile App UI Mockups",
+    "description": "Create high-fidelity mobile app mockups for iOS and Android platforms including user flows",
+    "paymentAmount": "1800.00",
+    "requiredBadge": "UI/UX Design",
+    "deadline": 1704326400,
+    "status": "SUBMITTED",
+    "featured": false,
+    "featuredUntil": null,
+    "urgent": true,
+    "txHash": "0xdef5678ghij9012klmn3456opqr7890stuv1234",
+    "createdAt": "2024-02-01T08:30:00Z",
+    "completedAt": null,
+    "applications": [
+      {
+        "workerId": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+        "coverLetter": "Mobile design is my specialty",
+        "estimatedTime": 10,
+        "appliedAt": "2024-02-01T09:00:00Z"
+      }
+    ]
+  },
+  {
+    "_id": "607f1f77bcf86cd799439022",
+    "blockchainGigId": 3,
+    "employer": "0xfedcbafedcbafedcbafedcbafedcbafedcbafed",
+    "worker": null,
+    "title": "Write Smart Contract Audit Report",
+    "description": "Perform comprehensive security audit of Solidity smart contracts and write detailed report",
+    "paymentAmount": "5000.00",
+    "requiredBadge": "Solidity",
+    "deadline": 1704585600,
+    "status": "OPEN",
+    "featured": true,
+    "featuredUntil": "2024-12-25T23:59:59Z",
+    "urgent": true,
+    "txHash": "0xghi9012jklm3456nopq7890rstu1234vwxy5678",
+    "createdAt": "2024-02-10T11:45:00Z",
+    "completedAt": null,
+    "applications": [
+      {
+        "workerId": "0xaa11bb22cc33dd44ee55ff66aa77bb88cc99dd00",
+        "coverLetter": "I have extensive smart contract auditing experience",
+        "estimatedTime": 21,
+        "appliedAt": "2024-02-10T13:20:00Z"
+      }
+    ]
+  },
+  {
+    "_id": "607f1f77bcf86cd799439023",
+    "blockchainGigId": 4,
+    "employer": "0xaa11bb22cc33dd44ee55ff66aa77bb88cc99dd00",
+    "worker": "0x1111111111111111111111111111111111111111",
+    "title": "Set Up Kubernetes Cluster",
+    "description": "Configure and deploy a production-grade Kubernetes cluster with monitoring and logging",
+    "paymentAmount": "3200.00",
+    "requiredBadge": "Kubernetes",
+    "deadline": 1704844800,
+    "status": "ASSIGNED",
+    "featured": false,
+    "featuredUntil": null,
+    "urgent": false,
+    "txHash": "0xjkl3456mnop7890qrst1234uvwx5678yzab9012",
+    "createdAt": "2024-02-15T14:00:00Z",
+    "completedAt": null,
+    "applications": [
+      {
+        "workerId": "0x1111111111111111111111111111111111111111",
+        "coverLetter": "Kubernetes expert with production experience",
+        "estimatedTime": 16,
+        "appliedAt": "2024-02-15T15:30:00Z"
+      }
+    ]
+  },
+  {
+    "_id": "607f1f77bcf86cd799439024",
+    "blockchainGigId": 5,
+    "employer": "0x1111111111111111111111111111111111111111",
+    "worker": null,
+    "title": "Data Analysis and Visualization Dashboard",
+    "description": "Build interactive analytics dashboard with Python and Plotly for business insights",
+    "paymentAmount": "2200.00",
+    "requiredBadge": "Python",
+    "deadline": 1705017600,
+    "status": "OPEN",
+    "featured": false,
+    "featuredUntil": null,
+    "urgent": false,
+    "txHash": "0xmno7890pqrs1234tuvw5678xyza9012bcde3456",
+    "createdAt": "2024-02-20T09:15:00Z",
+    "completedAt": null,
+    "applications": []
+  }
+]

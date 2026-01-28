@@ -2,24 +2,32 @@ const express = require("express");
 const router = express.Router();
 const BadgeVerification = require("../models/BadgeVerification");
 const User = require("../models/User");
+const Gig = require("../models/Gig");
 
 // In production, add proper authentication middleware
 // For now, we use a simple API key check
 const ADMIN_API_KEY = process.env.ADMIN_API_KEY || "admin-secret";
+const ADMIN_WALLET_WHITELIST = (process.env.ADMIN_WALLET_WHITELIST || "0x5af67b388c8df3b7204a013b9e02659f81daf34e")
+  .split(",")
+  .map((w) => w.trim().toLowerCase())
+  .filter(Boolean);
 
 /**
  * Middleware to verify admin access
  */
 const verifyAdmin = (req, res, next) => {
   const apiKey = req.headers["x-admin-key"] || req.query.adminKey;
+  const adminWallet = (req.headers["x-admin-wallet"] || req.query.adminWallet || "").toLowerCase();
+  const walletAllowed = adminWallet && ADMIN_WALLET_WHITELIST.includes(adminWallet);
 
-  if (apiKey !== ADMIN_API_KEY) {
+  if (apiKey !== ADMIN_API_KEY && !walletAllowed) {
     return res.status(403).json({
       success: false,
       message: "Unauthorized",
     });
   }
 
+  req.adminWallet = walletAllowed ? adminWallet : null;
   next();
 };
 
@@ -246,15 +254,40 @@ router.get("/verifications", async (req, res) => {
  */
 router.get("/dashboard", async (req, res) => {
   try {
-    const pendingCount = await BadgeVerification.countDocuments({
-      status: "pending",
-    });
-    const approvedCount = await BadgeVerification.countDocuments({
-      status: "approved",
-    });
-    const rejectedCount = await BadgeVerification.countDocuments({
-      status: "rejected",
-    });
+    const [pendingCount, approvedCount, rejectedCount, userCount, projectOwners, skillOwners, gigCounts, skillStatusCounts, projectStatusCounts] = await Promise.all([
+      BadgeVerification.countDocuments({ status: "pending" }),
+      BadgeVerification.countDocuments({ status: "approved" }),
+      BadgeVerification.countDocuments({ status: "rejected" }),
+      User.countDocuments({}),
+      User.countDocuments({ "projects.0": { $exists: true } }),
+      User.countDocuments({ "skills.0": { $exists: true } }),
+      Gig.aggregate([
+        { $group: { _id: "$status", count: { $sum: 1 } } },
+      ]),
+      User.aggregate([
+        { $unwind: { path: "$skillRequests", preserveNullAndEmptyArrays: false } },
+        { $group: { _id: "$skillRequests.status", count: { $sum: 1 } } },
+      ]),
+      User.aggregate([
+        { $unwind: { path: "$projects", preserveNullAndEmptyArrays: false } },
+        { $group: { _id: "$projects.status", count: { $sum: 1 } } },
+      ]),
+    ]);
+
+    const normalizeCounts = (arr, keys) => {
+      const map = Object.fromEntries(keys.map((k) => [k, 0]));
+      arr.forEach((entry) => {
+        if (entry?._id && map.hasOwnProperty(entry._id)) {
+          map[entry._id] = entry.count;
+        }
+      });
+      map.total = keys.reduce((sum, k) => sum + map[k], 0);
+      return map;
+    };
+
+    const skillCounts = normalizeCounts(skillStatusCounts, ["pending", "approved", "rejected"]);
+    const projectCounts = normalizeCounts(projectStatusCounts, ["pending", "approved", "rejected"]);
+    const gigCountsMap = normalizeCounts(gigCounts, ["OPEN", "ASSIGNED", "SUBMITTED", "COMPLETED", "CANCELLED"]);
 
     res.json({
       success: true,
@@ -264,6 +297,18 @@ router.get("/dashboard", async (req, res) => {
           approved: approvedCount,
           rejected: rejectedCount,
           total: pendingCount + approvedCount + rejectedCount,
+        },
+        skills: skillCounts,
+        projects: projectCounts,
+        users: {
+          total: userCount,
+          withProjects: projectOwners,
+          withSkills: skillOwners,
+        },
+        gigs: gigCountsMap,
+        access: {
+          viaWallet: Boolean(req.adminWallet),
+          adminWallet: req.adminWallet,
         },
       },
     });
